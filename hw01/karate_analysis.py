@@ -74,13 +74,17 @@ if __name__ == '__main__':
     degree_sequence = sorted([d for n, d in G.degree()], reverse=True)  # degree sequence
     degreeCount = collections.Counter(degree_sequence)
     deg, cnt = zip(*degreeCount.items())
+    cnt_sum = sum(cnt)
+    norm_cnt = []
+    for i in range(len(cnt)):
+        norm_cnt.append(cnt[i]/cnt_sum)
 
     # ******** DEGREE DISTRIBUTION ******** #
     # Canvas Configuration
     plt.figure(figsize=(12, 9))
 
     fig, ax = plt.subplots()
-    plt.bar(deg, cnt, width=0.80, color="b")
+    plt.bar(deg, norm_cnt, width=0.80, color="b")
 
     plt.title("Degree Distribution in Karate Club Network")
     plt.ylabel("Count")
